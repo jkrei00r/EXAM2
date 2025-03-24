@@ -216,7 +216,7 @@ class Pipe():
         Calculate average velocity in the pipe for volumetric flow self.Q
         :return:the average velocity in m/s
         '''
-        self.vel = (self.Q * UC.L_to_ft3) / self.A  # $JES MISSING CODE  # the average velocity is Q/A (be mindful of units)
+        self.vel = abs(self.Q/1000)/self.A  # $JES MISSING CODE  # the average velocity is Q/A (be mindful of units)
         return self.vel
 
     def Re(self):
@@ -550,7 +550,7 @@ def main():
     # Section B
     PN.pipes.append(Pipe('b', 'c', 500, 18, r_CN, water, SI=SIUnits))  # b-c: 500 ft, 18 in, concrete
     PN.pipes.append(Pipe('c', 'f', 800, 16, r_CI, water, SI=SIUnits))  # c-f: 800 ft, 16 in, cast iron
-    PN.pipes.append(Pipe('f', 'e', 500, 12, r_CI, water, SI=SIUnits))  # f-e: 500 ft, 12 in, cast iron
+    #PN.pipes.append(Pipe('f', 'e', 500, 12, r_CI, water, SI=SIUnits))  # f-e: 500 ft, 12 in, cast iron
 
 
     # Section C
@@ -559,9 +559,9 @@ def main():
     PN.pipes.append(Pipe('f', 'g', 500, 12, r_CI, water, SI=SIUnits))  # g-f: 500 ft, 12 in, cast iron
 
     # Section D
-    PN.pipes.append(Pipe('e', 'f', 500, 12, r_CN, water, SI=SIUnits))  # i-e: 800 ft, 18 in, concrete
-    PN.pipes.append(Pipe('g', 'j', 800, 18, r_CI, water, SI=SIUnits))  # g-f: 500 ft, 12 in, cast iron
-    PN.pipes.append(Pipe('i', 'j', 1000, 24, r_CI, water, SI=SIUnits))  # g-j: 800 ft, 18 in, concrete
+    PN.pipes.append(Pipe('e', 'f', 500, 12, r_CI, water, SI=SIUnits))  # i-e: 800 ft, 18 in, concrete
+    PN.pipes.append(Pipe('g', 'j', 800, 18, r_CN, water, SI=SIUnits))  # g-f: 500 ft, 12 in, cast iron
+    PN.pipes.append(Pipe('i', 'j', 1000, 24, r_CN, water, SI=SIUnits))  # g-j: 800 ft, 18 in, concrete
 
 
     # add Node objects to the pipe network by calling buildNodes method of PN object
